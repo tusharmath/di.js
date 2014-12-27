@@ -4,10 +4,12 @@ function isUpperCase(char) {
   return char.toUpperCase() === char;
 }
 function isClass(clsOrFunction) {
-  if (clsOrFunction.name) {
+  if (Object.keys(clsOrFunction.prototype).length > 0) {
+    return true;
+  } else if (clsOrFunction.name) {
     return isUpperCase(clsOrFunction.name.charAt(0));
   }
-  return Object.keys(clsOrFunction.prototype).length > 0;
+  return false;
 }
 function isFunction(value) {
   return typeof value === 'function';
